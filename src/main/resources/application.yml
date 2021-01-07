@@ -1,0 +1,45 @@
+environment: test
+
+micronaut:
+  application:
+    name: cet
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+        step: PT1M
+        descriptions: true
+    binders:
+      jvm:
+        enabled: true
+      web:
+        enabled: true
+      uptime:
+        enabled: true
+      processor:
+        enabled: true
+      files:
+        enabled: true
+      logback:
+        enabled: true
+
+endpoints:
+  prometheus:
+    sensitive: false
+  health:
+    details-visible: ANONYMOUS
+    jdbc:
+      enabled: true
+    disk-space:
+      enabled: true
+
+# Tracing
+tracing:
+  jaeger:
+    enabled: ${JAEGER_COLLECTOR_ENABLE:`true`}
+    sender:
+      agentHost: ${JAEGER_COLLECTOR_HOST:`localhost`}
+      agentPort: ${JAEGER_COLLECTOR_PORT:`6831`}
+    sampler:
+      probability: 1
