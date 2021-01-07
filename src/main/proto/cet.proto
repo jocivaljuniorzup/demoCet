@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "jocivaldias/cet";
+option java_multiple_files = true;
+option java_package = "com.jocivaldias";
+
+package com.jocivaldias;
+
+import "google/api/annotations.proto";
+
+service Cet {
+  rpc CalcularCet (CetRequest) returns (CetResponse) {
+    option (google.api.http) = {
+      post: "/calcularCet"
+      body: "*"
+    };
+  }
+}
+
+message CetRequest {
+  double creditoConcedido = 1;
+  string dataLiberacaoCredito = 2;
+  repeated Pagamento pagamentos = 3;
+}
+
+message Pagamento {
+  double valorCobrado = 1;
+  string dataCobranca = 2;
+}
+
+message CetResponse {
+  double cet = 1;
+}
