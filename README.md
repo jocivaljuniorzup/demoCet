@@ -1,2 +1,2 @@
 # demoCet
-Kotlin + Micronaut - Custo Efetivo Total
+Kotlin + Micronaut + GRPC - Custo Efetivo Total
